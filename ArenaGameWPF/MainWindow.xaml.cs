@@ -21,6 +21,7 @@ namespace ArenaGameWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public readonly static Random random_number_generator = new Random();
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace ArenaGameWPF
                 string input_start = Console.ReadLine();
                 if (input_start == "Yes" || input_start == "Y")
                 {
-                    int[] hero = SetHero(level_hero);
+                    int[] hero = Hero.SetHero(level_hero);
                     Console.WriteLine("Pick Level for Monster from 1 - 100:");
                     for (; ; )
                     {
@@ -58,7 +59,7 @@ namespace ArenaGameWPF
                         }
                     }
 
-                    int[] monster = PickMonster(level_monster);
+                    int[] monster = Monsters.PickMonster(level_monster);
                     int[] damages; //Array to save the damage being done to hero and monster
                     while (hero[0] > 0)
                     {
@@ -67,15 +68,15 @@ namespace ArenaGameWPF
                         string input_function = Console.ReadLine();
                         if (input_function == "Attack" || input_function == "attack")
                         {
-                            damages = FuncAttack(hero, monster);
+                            damages = Functions.FuncAttack(hero, monster);
                         }
                         else if (input_function == "Defend" || input_function == "defend")
                         {
-                            damages = FuncDefend(hero, monster);
+                            damages = Functions.FuncDefend(hero, monster);
                         }
                         else if (input_function == "Heal" || input_function == "heal")
                         {
-                            damages = FuncHeal(hero, monster);
+                            damages = Functions.FuncHeal(hero, monster);
                         }
                         else if (input_function == "Retreat" || input_function == "retreat")
                         {
@@ -87,7 +88,7 @@ namespace ArenaGameWPF
                             else
                             {
                                 Console.WriteLine("Hero retreat failed.");
-                                damages = FuncFailedRetreat(hero, monster);
+                                damages = Functions.FuncFailedRetreat(hero, monster);
                             }
                         }
                         else
@@ -127,4 +128,4 @@ namespace ArenaGameWPF
         }
     }
     }
-}
+

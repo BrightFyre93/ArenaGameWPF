@@ -8,7 +8,11 @@ namespace ArenaGameWPF
 {
     class Monsters
     {
-        static int[] PickMonster(int level)
+        public readonly static Random random_number_generator = new Random();
+        public readonly static int[] snake = new int[] { 40, 60, 8, 12, 15, 25 }; //First index is Lower Bound Health, Second Index is Upper Bound Health, Third index is Lower Bound Attack, Fourth Index is Upper Bound Attack, Fifth index is Lower Bound EXP, Sixth Index is Upper Bound EXP
+        public readonly static int[] dragon = new int[] { 70, 90, 6, 10, 25, 35 };
+        public readonly static int[] scorpion = new int[] { 30, 50, 15, 25, 20, 30 };
+        public static int[] PickMonster(int level)
         {
             int[] monster = new int[] { 0, 0, 0 }; //First index is Health, Second is Attack, Third is EXP
             while (true)
