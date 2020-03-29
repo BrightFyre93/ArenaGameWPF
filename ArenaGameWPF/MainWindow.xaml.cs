@@ -26,14 +26,13 @@ namespace ArenaGameWPF
         {
             InitializeComponent();
         }
-        static void Main()
+        private void Start_Journey(object sender, RoutedEventArgs e)
         {
             int exp_hero = 0;
             int level_hero = 1;
             int level_monster;
             while (true)
             {
-                Console.WriteLine("Would you like to start a new game? Input Y/Yes or N/No");
                 string input_start = Console.ReadLine();
                 if (input_start == "Yes" || input_start == "Y")
                 {
