@@ -97,5 +97,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Hero\Default\HeroPixelArt 64 pixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Monster\Dragon\DragonPixelArt 64 pixels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Monster\Scorpion\ScorpionPixelArt 64 pixels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Monster\Snake\SnakePixelArt 64 pixels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Monster\Default\DefaultPixelArt 64 pixels.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

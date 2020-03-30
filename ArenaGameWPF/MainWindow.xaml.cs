@@ -36,18 +36,26 @@ namespace ArenaGameWPF
         }
         private void MakeResetAvailableAfterGame()
         {
+
             FuncAttack_Button.Visibility = Visibility.Hidden;
             FuncDefend_Button.Visibility = Visibility.Hidden;
             FuncHeal_Button.Visibility = Visibility.Hidden;
             FuncRetreat_Button.Visibility = Visibility.Hidden;
             Info_Label.Content = "Would you like to start a new game?";
             StartGame_Button.Visibility = Visibility.Visible;
+            Hero_Image.Source = null;
+            Monster_Image.Source = null;
+        }
+        public void SetImageSource(string source)
+        {
+            Monster_Image.Source = new BitmapImage(new Uri(source, UriKind.Relative));
         }
         private void Start_Journey(object sender, RoutedEventArgs e)
         {
             HeroLevel_Label.Content = $"Hero Level: {level_hero}";
             HeroEXP_Label.Content = $"Hero EXP: {exp_hero}";
             hero = Hero.SetHero(level_hero);
+            Hero_Image.Source = new BitmapImage(new Uri(@"\Resources\Hero\Default\HeroPixelArt 64 pixel.png", UriKind.Relative));
             Info_Label.Content = "Pick Monster Level and Type:";
             GameAction_Textbox.Text = "";
             GameAction_Textbox.Text += "Base Stats for Level 1";
@@ -117,6 +125,8 @@ namespace ArenaGameWPF
                 else
                 {
                     monster = Monsters.PickMonster(level_monster, type_monster);
+                    string imageSource = Monsters.SetImageSource(type_monster);
+                    Monster_Image.Source = new BitmapImage(new Uri(imageSource, UriKind.Relative));
                     Proceed_Button.Visibility = Visibility.Hidden;
                     MonsterLevel_Textbox.Visibility = Visibility.Hidden;
                     MonsterType_Textbox.Visibility = Visibility.Hidden;
