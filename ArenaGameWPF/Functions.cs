@@ -8,24 +8,24 @@ namespace ArenaGameWPF
 {
     class Functions
     {
-        public static int[] FuncAttack(int[] hero, int[] monster)
+        public static int[] FuncAttack(HeroStats hero, SetMonster monster)
         {
-            int[] damage_dealt = new int[] {monster[1], hero[1] }; // Index 1 - Damage to Hero Index 2 - New Monster Health
+            int[] damage_dealt = new int[] {monster.Attack, hero.Attack }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncDefend(int[] hero, int[] monster)
+        public static int[] FuncDefend(HeroStats hero, SetMonster monster)
         {
-            int[] damage_dealt = new int[] { 1, 0 }; // Index 1 - New Hero Health Index 2 - New Monster Health
+            int[] damage_dealt = new int[] { 1, 0 };// Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncHeal(int[] hero, int[] monster)
+        public static int[] FuncHeal(HeroStats hero, SetMonster monster)
         {
-            int[] damage_dealt = new int[] { - hero[1] + monster[1], 0 }; // Index 1 - New Hero Health Index 2 - New Monster Health
+            int[] damage_dealt = new int[] { - hero.Attack + monster.Attack, 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncFailedRetreat(int[] hero, int[] monster)
+        public static int[] FuncFailedRetreat(HeroStats hero, SetMonster monster)
         {
-            int[] damage_dealt = new int[] { monster[1], 0 }; // Index 1 - New Hero Health Index 2 - New Monster Health
+            int[] damage_dealt = new int[] { monster.Attack, 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
     }

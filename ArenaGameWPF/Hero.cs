@@ -6,22 +6,36 @@ using System.Threading.Tasks;
 
 namespace ArenaGameWPF
 {
+    public class HeroStats
+    {
+        public string NameofHero;
+        public int Health;
+        public int Attack;
+        public int EXP;
+        public int Level;
+    }
     public class Hero
     {
-        public static int[] SetHero(int level)
+
+        public static HeroStats SetHero(int level)
         {
-            int[] hero = new int[] { 100 * level, 10 * level }; //First index is Health, Second is Attack
+            HeroStats hero = new HeroStats() {
+                Health = 100 * level,
+                Attack = 10 * level
+            }; 
             return hero;
         }
-        public static int[] CheckHeroLevel(int EXP,int level)
+        public static HeroStats CheckHeroLevel(int inEXP,int inlevel)
         {
-            int level_requirements = level * 100 + level * (level - 1) * 25; // Calculation of Sum of Arithmetic Progression with first term = 100 EXP and increase in EXP = 50 EXP
-            if (level_requirements < EXP)
+            int level_requirements = inlevel * 100 + inlevel * (inlevel - 1) * 25; // Calculation of Sum of Arithmetic Progression with first term = 100 EXP and increase in EXP = 50 EXP
+            if (level_requirements < inEXP)
             {
-                EXP -= level_requirements;
-                level += 1;
+                inEXP -= level_requirements;
+                inlevel += 1;
             }
-            int[] heroEXPLevel = new int[] {EXP, level };
+            HeroStats heroEXPLevel = new HeroStats() {
+                EXP = inEXP,
+                Level = inlevel };
             return heroEXPLevel;
         }
     }

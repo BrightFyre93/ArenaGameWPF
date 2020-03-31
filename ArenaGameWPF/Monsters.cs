@@ -9,12 +9,60 @@ using System.Windows.Controls;
 
 namespace ArenaGameWPF
 {
+    public class MonsterStats
+    {
+        public string NameofMonster;
+        public int LowerBoundHealth;
+        public int UpperBoundHealth;
+        public int LowerBoundAttack;
+        public int UpperBoundAttack;
+        public int LowerBoundEXP;
+        public int UpperBoundEXP;
+    }
+    public class SetMonster
+    {
+        public string NameofMonster;
+        public int Health;
+        public int Attack;
+        public int EXP;
+    }
     class Monsters
     {
+        public Monsters()
+        {
+
+        }
         public readonly static Random random_number_generator = new Random();
-        public readonly static int[] snake = new int[] { 40, 60, 8, 12, 15, 25 }; //First index is Lower Bound Health, Second Index is Upper Bound Health, Third index is Lower Bound Attack, Fourth Index is Upper Bound Attack, Fifth index is Lower Bound EXP, Sixth Index is Upper Bound EXP
-        public readonly static int[] dragon = new int[] { 70, 90, 6, 10, 25, 35 };
-        public readonly static int[] scorpion = new int[] { 30, 50, 15, 25, 20, 30 };
+        public MonsterStats snake_Stats = new MonsterStats()
+        {
+            NameofMonster = "Snake",
+            LowerBoundHealth = 40,
+            UpperBoundHealth = 60,
+            LowerBoundAttack = 8,
+            UpperBoundAttack = 12,
+            LowerBoundEXP = 15,
+            UpperBoundEXP = 25
+        };
+        public MonsterStats dragon_Stats = new MonsterStats()
+        {
+            NameofMonster = "Dragon",
+            LowerBoundHealth = 70,
+            UpperBoundHealth = 90,
+            LowerBoundAttack = 6,
+            UpperBoundAttack = 10,
+            LowerBoundEXP = 25,
+            UpperBoundEXP = 35
+        };
+        public MonsterStats scorpion_Stats = new MonsterStats()
+        {
+            NameofMonster = "Scorpion",
+            LowerBoundHealth = 30,
+            UpperBoundHealth = 50,
+            LowerBoundAttack = 15,
+            UpperBoundAttack = 25,
+            LowerBoundEXP = 20,
+            UpperBoundEXP = 30
+        };
         public static string SetImageSource(int type)
         {
             if (type == 1) //Snake
@@ -34,26 +82,29 @@ namespace ArenaGameWPF
                 return @"\Resources\Monster\Default\DefaultPixelArt 64 pixels.png";
             }
         }
-        public static int[] PickMonster(int level, int type)
+        public SetMonster PickMonster(int level, int type)
         {
-            int[] monster = new int[] { 0, 0, 0 }; //First index is Health, Second is Attack, Third is EXP
+            SetMonster monster = new SetMonster();
                     if (type == 1) //Snake
                     {
-                        monster[0] = random_number_generator.Next(snake[0], snake[1]) * level;
-                        monster[1] = random_number_generator.Next(snake[2], snake[3]) * level;
-                        monster[2] = random_number_generator.Next(snake[4], snake[5]) * level;
+                        monster.NameofMonster = snake_Stats.NameofMonster;
+                        monster.Health = random_number_generator.Next(snake_Stats.LowerBoundHealth, snake_Stats.UpperBoundHealth) * level;
+                        monster.Attack = random_number_generator.Next(snake_Stats.LowerBoundAttack, snake_Stats.UpperBoundAttack) * level;
+                        monster.EXP = random_number_generator.Next(snake_Stats.LowerBoundEXP, snake_Stats.UpperBoundEXP) * level;
                     }
                     else if (type == 2) //Dragon
                     {
-                        monster[0] = random_number_generator.Next(dragon[0], dragon[1]) * level;
-                        monster[1] = random_number_generator.Next(dragon[2], dragon[3]) * level;
-                        monster[2] = random_number_generator.Next(dragon[4], dragon[5]) * level;
+                        monster.NameofMonster = dragon_Stats.NameofMonster;
+                        monster.Health = random_number_generator.Next(dragon_Stats.LowerBoundHealth, dragon_Stats.UpperBoundHealth) * level;
+                        monster.Attack = random_number_generator.Next(dragon_Stats.LowerBoundAttack, dragon_Stats.UpperBoundAttack) * level;
+                        monster.EXP = random_number_generator.Next(dragon_Stats.LowerBoundEXP, dragon_Stats.UpperBoundEXP) * level;
                     }
                     else if (type == 3) //Scorpion
                     {
-                        monster[0] = random_number_generator.Next(scorpion[0], scorpion[1]) * level;
-                        monster[1] = random_number_generator.Next(scorpion[2], scorpion[3]) * level;
-                        monster[2] = random_number_generator.Next(scorpion[4], scorpion[5]) * level;
+                        monster.NameofMonster = scorpion_Stats.NameofMonster;
+                        monster.Health = random_number_generator.Next(scorpion_Stats.LowerBoundHealth, scorpion_Stats.UpperBoundHealth) * level;
+                        monster.Attack = random_number_generator.Next(scorpion_Stats.LowerBoundAttack, scorpion_Stats.UpperBoundAttack) * level;
+                        monster.EXP = random_number_generator.Next(scorpion_Stats.LowerBoundEXP, scorpion_Stats.UpperBoundEXP) * level;
                     }
             return monster;
         }
