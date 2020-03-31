@@ -9,20 +9,23 @@ namespace ArenaGameWPF
     public class HeroStats
     {
         public string NameofHero;
-        public int Health;
-        public int Attack;
-        public int Defense;
+        public double Health;
+        public double Attack;
+        public double Defense;
         public int EXP;
         public int Level;
     }
     public class Hero
     {
 
-        public static HeroStats SetHero(int level)
+        public static HeroStats SetHero(int plevel,int pEXP)
         {
             HeroStats hero = new HeroStats() {
-                Health = 100 * level,
-                Attack = 10 * level
+                Health = 100.0 * plevel,
+                Attack = 10.0 * plevel,
+                Defense = 10.0 * plevel,
+                Level = plevel,
+                EXP = pEXP
             }; 
             return hero;
         }

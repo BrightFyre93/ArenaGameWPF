@@ -8,24 +8,32 @@ namespace ArenaGameWPF
 {
     class Functions
     {
-        public static int[] FuncAttack(HeroStats hero, MonsterStats monster)
+        
+        readonly static Random random_number_generator = new Random();
+
+        public static double CalculateDamage(double attack, double defense)
         {
-            int[] damage_dealt = new int[] {monster.Attack, hero.Attack }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
+            double damage = attack * attack / (attack + defense) * ((random_number_generator.NextDouble() * 40.0 + 215)/235);
+            return damage;
+        }
+        public static double[] FuncAttack(HeroStats hero, MonsterStats monster)
+        {
+            double[] damage_dealt = new double[] { CalculateDamage(monster.Attack,hero.Defense) , CalculateDamage(hero.Attack, monster.Defense) }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncDefend(HeroStats hero, MonsterStats monster)
+        public static double[] FuncDefend(HeroStats hero, MonsterStats monster)
         {
-            int[] damage_dealt = new int[] { 1, 0 };// Index 1 - Damage to Hero Index 2 - Damage to Monster
+            double[] damage_dealt = new double[] { 1, 0 };// Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncHeal(HeroStats hero, MonsterStats monster)
+        public static double[] FuncHeal(HeroStats hero, MonsterStats monster)
         {
-            int[] damage_dealt = new int[] { - hero.Attack + monster.Attack, 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
+            double[] damage_dealt = new double[] { hero.Attack , CalculateDamage(monster.Attack, hero.Defense) , 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
-        public static int[] FuncFailedRetreat(HeroStats hero, MonsterStats monster)
+        public static double[] FuncFailedRetreat(HeroStats hero, MonsterStats monster)
         {
-            int[] damage_dealt = new int[] { monster.Attack, 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
+            double[] damage_dealt = new double[] { CalculateDamage(monster.Attack, hero.Defense), 0 }; // Index 1 - Damage to Hero Index 2 - Damage to Monster
             return damage_dealt;
         }
     }

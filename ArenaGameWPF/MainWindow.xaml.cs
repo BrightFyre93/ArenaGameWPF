@@ -21,10 +21,10 @@ namespace ArenaGameWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public readonly static Random random_number_generator = new Random();
+        readonly static Random random_number_generator = new Random();
         int level_monster;
         int type_monster;
-        int[] damages; //Array to save the damage being done to hero and monster
+        double[] damages; //Array to save the damage being done to hero and monster
         readonly Monsters monsterObject = new Monsters();
         MonsterStats monster = new MonsterStats();
         HeroStats hero = new HeroStats()
@@ -56,15 +56,15 @@ namespace ArenaGameWPF
         {
             HeroLevel_Label.Content = $"Hero Level: {hero.Level}";
             HeroEXP_Label.Content = $"Hero EXP: {hero.EXP}";
-            hero = Hero.SetHero(hero.Level);
+            hero = Hero.SetHero(hero.Level,hero.EXP);
             Hero_Image.Source = new BitmapImage(new Uri(@"\Resources\Hero\Default\HeroPixelArt 64 pixel.png", UriKind.Relative));
             Info_Label.Content = "Pick Monster Level and Type:";
             GameAction_Textbox.Text = "";
             GameAction_Textbox.Text += "Base Stats for Level 1";
-            GameAction_Textbox.Text += $"\nNo. - Name     - Health (Low-High) - Attack (Low-High) - Monster EXP (Low-High)";
-            GameAction_Textbox.Text += $"\n1   - {monsterObject.snake_Stats.NameofMonster}       -       {monsterObject.snake_Stats.Health * 8/10} - {monsterObject.snake_Stats.Health * 12 / 10}             -         {monsterObject.snake_Stats.Attack * 8 / 10} - {monsterObject.snake_Stats.Attack * 12 / 10}            -         {monsterObject.snake_Stats.EXP * 8 / 10} - {monsterObject.snake_Stats.EXP * 12 / 10} ";
-            GameAction_Textbox.Text += $"\n2   - {monsterObject.dragon_Stats.NameofMonster}     -       {monsterObject.dragon_Stats.Health * 8 / 10} - {monsterObject.dragon_Stats.Health * 12 / 10}             -         {monsterObject.dragon_Stats.Attack * 8 / 10} - {monsterObject.dragon_Stats.Attack * 12 / 10}            -         {monsterObject.dragon_Stats.EXP * 8 / 10} - {monsterObject.dragon_Stats.EXP * 12 / 10} ";
-            GameAction_Textbox.Text += $"\n3   - {monsterObject.scorpion_Stats.NameofMonster}   -       {monsterObject.scorpion_Stats.Health * 8 / 10} - {monsterObject.scorpion_Stats.Health * 12 / 10}             -       {monsterObject.scorpion_Stats.Attack * 8 / 10} - {monsterObject.scorpion_Stats.Attack * 12 / 10}            -         {monsterObject.scorpion_Stats.EXP * 8 / 10} - {monsterObject.scorpion_Stats.EXP * 12 / 10} ";
+            GameAction_Textbox.Text += $"\nNo. - Name     - Health (Low-High) - Attack (Low-High) - Defense (Low-High) - Monster EXP (Low-High)";
+            GameAction_Textbox.Text += $"\n1   - {monsterObject.snake_Stats.NameofMonster}       -       {monsterObject.snake_Stats.Health * 8/10} - {monsterObject.snake_Stats.Health * 12 / 10}             -         {monsterObject.snake_Stats.Attack * 8 / 10} - {monsterObject.snake_Stats.Attack * 12 / 10}            -       {monsterObject.snake_Stats.Defense * 8 / 10} - {monsterObject.snake_Stats.Defense * 12 / 10}             -         {monsterObject.snake_Stats.EXP * 8 / 10} - {monsterObject.snake_Stats.EXP * 12 / 10} ";
+            GameAction_Textbox.Text += $"\n2   - {monsterObject.dragon_Stats.NameofMonster}     -       {monsterObject.dragon_Stats.Health * 8 / 10} - {monsterObject.dragon_Stats.Health * 12 / 10}             -        {monsterObject.dragon_Stats.Attack * 8 / 10} - {monsterObject.dragon_Stats.Attack * 12 / 10}          -       {monsterObject.dragon_Stats.Defense * 8 / 10} - {monsterObject.dragon_Stats.Defense * 12 / 10}          -         {monsterObject.dragon_Stats.EXP * 8 / 10} - {monsterObject.dragon_Stats.EXP * 12 / 10} ";
+            GameAction_Textbox.Text += $"\n3   - {monsterObject.scorpion_Stats.NameofMonster}   -       {monsterObject.scorpion_Stats.Health * 8 / 10} - {monsterObject.scorpion_Stats.Health * 12 / 10}             -       {monsterObject.scorpion_Stats.Attack * 8 / 10} - {monsterObject.scorpion_Stats.Attack * 12 / 10}            -       {monsterObject.scorpion_Stats.Defense * 8 / 10} - {monsterObject.scorpion_Stats.Defense * 12 / 10}            -         {monsterObject.scorpion_Stats.EXP * 8 / 10} - {monsterObject.scorpion_Stats.EXP * 12 / 10} ";
             Proceed_Button.Visibility = Visibility.Visible;
             MonsterLevel_Textbox.Visibility = Visibility.Visible;
             MonsterType_Label.Visibility = Visibility.Visible;
@@ -73,17 +73,17 @@ namespace ArenaGameWPF
             StartGame_Button.Visibility = Visibility.Hidden;
  
         }
-        public void FightFinish(int[] damages)
+        public void FightFinish(double[] damages)
         {
             hero.Health -= damages[0];
             monster.Health -= damages[1];
             if (monster.Health < 0)
             {
-                GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {hero.Health} \nMonster - 0";
+                GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {String.Format("{0:0.00}", hero.Health)} \nMonster - 0";
             }
             else
             {
-                GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {hero.Health} \nMonster - {monster.Health}";
+                GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {String.Format("{0:0.00}", hero.Health)} \nMonster - {String.Format("{0:0.00}", monster.Health)}";
             }
             if (hero.Health <= 0)
             {
@@ -134,7 +134,7 @@ namespace ArenaGameWPF
                     MonsterType_Textbox.Visibility = Visibility.Hidden;
                     MonsterType_Label.Visibility = Visibility.Hidden;
                     MonsterLevel_Label.Visibility = Visibility.Hidden;
-                    GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {hero.Health} \nMonster - {monster.Health}";
+                    GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {String.Format("{0:0.00}", hero.Health)} \nMonster - {String.Format("{0:0.00}", monster.Health)}";
                     Info_Label.Content = "Choose whether to Attack or Heal or Defend or Retreat: ";
                     FuncAttack_Button.Visibility = Visibility.Visible;
                     FuncDefend_Button.Visibility = Visibility.Visible;
@@ -150,22 +150,23 @@ namespace ArenaGameWPF
         private void FuncAttack_Button_Click(object sender, RoutedEventArgs e)
         {
             damages = Functions.FuncAttack(hero, monster);
-            GameAction_Textbox.Text += $"\nHero did {damages[1]} damage to Monster.";
-            GameAction_Textbox.Text += $"\nMonster did {damages[0]} damage to Hero.";
+            GameAction_Textbox.Text += $"\nHero did {String.Format("{0:0.00}", damages[1])} damage to Monster.";
+            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
             FightFinish(damages);
         }
         private void FuncDefend_Button_Click(object sender, RoutedEventArgs e)
         {
             damages = Functions.FuncDefend(hero, monster);
             GameAction_Textbox.Text += $"\nHero defended.";
-            GameAction_Textbox.Text += $"\nMonster did {damages[0]} damage to Hero.";
+            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
             FightFinish(damages);
         }
         private void FuncHeal_Button_Click(object sender, RoutedEventArgs e)
         {
-            damages = Functions.FuncHeal(hero, monster);
-            GameAction_Textbox.Text += $"\nHero healed his/her health by {hero.Attack} points.";
-            GameAction_Textbox.Text += $"\nMonster did {monster.Attack} damage to Hero.";
+            double[] sepdamage = Functions.FuncHeal(hero, monster);
+            GameAction_Textbox.Text += $"\nHero healed his/her health by {String.Format("{0:0.00}", sepdamage[0])} points.";
+            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", sepdamage[1])} damage to Hero.";
+            damages = new double[] {sepdamage[1] - sepdamage[0],0 }; //Converted from separate damage values to final damage values
             FightFinish(damages);
         }
         private void FuncRetreat_Button_Click(object sender, RoutedEventArgs e)
@@ -179,7 +180,7 @@ namespace ArenaGameWPF
             {
                 GameAction_Textbox.Text += "\nHero retreat failed.";
                 damages = Functions.FuncFailedRetreat(hero, monster);
-                GameAction_Textbox.Text += $"\nMonster did {damages[0]} damage to Hero.";
+                GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
                 FightFinish(damages);
             }
 
