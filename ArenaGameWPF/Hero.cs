@@ -11,6 +11,7 @@ namespace ArenaGameWPF
         public string NameofHero;
         public int Health;
         public int Attack;
+        public int Defense;
         public int EXP;
         public int Level;
     }

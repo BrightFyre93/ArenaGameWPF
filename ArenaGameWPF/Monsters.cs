@@ -12,16 +12,6 @@ namespace ArenaGameWPF
     public class MonsterStats
     {
         public string NameofMonster;
-        public int LowerBoundHealth;
-        public int UpperBoundHealth;
-        public int LowerBoundAttack;
-        public int UpperBoundAttack;
-        public int LowerBoundEXP;
-        public int UpperBoundEXP;
-    }
-    public class SetMonster
-    {
-        public string NameofMonster;
         public int Health;
         public int Attack;
         public int EXP;
@@ -36,32 +26,23 @@ namespace ArenaGameWPF
         public MonsterStats snake_Stats = new MonsterStats()
         {
             NameofMonster = "Snake",
-            LowerBoundHealth = 40,
-            UpperBoundHealth = 60,
-            LowerBoundAttack = 8,
-            UpperBoundAttack = 12,
-            LowerBoundEXP = 15,
-            UpperBoundEXP = 25
+            Health = 50,
+            Attack = 10,
+            EXP = 20
         };
         public MonsterStats dragon_Stats = new MonsterStats()
         {
             NameofMonster = "Dragon",
-            LowerBoundHealth = 70,
-            UpperBoundHealth = 90,
-            LowerBoundAttack = 6,
-            UpperBoundAttack = 10,
-            LowerBoundEXP = 25,
-            UpperBoundEXP = 35
+            Health = 80,
+            Attack = 8,
+            EXP = 30
         };
         public MonsterStats scorpion_Stats = new MonsterStats()
         {
             NameofMonster = "Scorpion",
-            LowerBoundHealth = 30,
-            UpperBoundHealth = 50,
-            LowerBoundAttack = 15,
-            UpperBoundAttack = 25,
-            LowerBoundEXP = 20,
-            UpperBoundEXP = 30
+            Health = 30,
+            Attack = 20,
+            EXP = 25
         };
         public static string SetImageSource(int type)
         {
@@ -82,29 +63,29 @@ namespace ArenaGameWPF
                 return @"\Resources\Monster\Default\DefaultPixelArt 64 pixels.png";
             }
         }
-        public SetMonster PickMonster(int level, int type)
+        public MonsterStats PickMonster(int level, int type)
         {
-            SetMonster monster = new SetMonster();
+            MonsterStats monster = new MonsterStats();
                     if (type == 1) //Snake
                     {
                         monster.NameofMonster = snake_Stats.NameofMonster;
-                        monster.Health = random_number_generator.Next(snake_Stats.LowerBoundHealth, snake_Stats.UpperBoundHealth) * level;
-                        monster.Attack = random_number_generator.Next(snake_Stats.LowerBoundAttack, snake_Stats.UpperBoundAttack) * level;
-                        monster.EXP = random_number_generator.Next(snake_Stats.LowerBoundEXP, snake_Stats.UpperBoundEXP) * level;
+                        monster.Health = random_number_generator.Next(snake_Stats.Health*8/10, snake_Stats.Health*12/10) * level;
+                        monster.Attack = random_number_generator.Next(snake_Stats.Attack*8/10, snake_Stats.Attack*12*10) * level;
+                        monster.EXP = random_number_generator.Next(snake_Stats.EXP*8/10, snake_Stats.EXP*12/10) * level;
                     }
                     else if (type == 2) //Dragon
                     {
                         monster.NameofMonster = dragon_Stats.NameofMonster;
-                        monster.Health = random_number_generator.Next(dragon_Stats.LowerBoundHealth, dragon_Stats.UpperBoundHealth) * level;
-                        monster.Attack = random_number_generator.Next(dragon_Stats.LowerBoundAttack, dragon_Stats.UpperBoundAttack) * level;
-                        monster.EXP = random_number_generator.Next(dragon_Stats.LowerBoundEXP, dragon_Stats.UpperBoundEXP) * level;
+                        monster.Health = random_number_generator.Next(dragon_Stats.Health * 8 / 10, dragon_Stats.Health * 12 / 10) * level;
+                        monster.Attack = random_number_generator.Next(dragon_Stats.Attack * 8 / 10, dragon_Stats.Attack * 12 * 10) * level;
+                        monster.EXP = random_number_generator.Next(dragon_Stats.EXP * 8 / 10, dragon_Stats.EXP * 12 / 10) * level;
                     }
                     else if (type == 3) //Scorpion
                     {
                         monster.NameofMonster = scorpion_Stats.NameofMonster;
-                        monster.Health = random_number_generator.Next(scorpion_Stats.LowerBoundHealth, scorpion_Stats.UpperBoundHealth) * level;
-                        monster.Attack = random_number_generator.Next(scorpion_Stats.LowerBoundAttack, scorpion_Stats.UpperBoundAttack) * level;
-                        monster.EXP = random_number_generator.Next(scorpion_Stats.LowerBoundEXP, scorpion_Stats.UpperBoundEXP) * level;
+                        monster.Health = random_number_generator.Next(scorpion_Stats.Health * 8 / 10, scorpion_Stats.Health * 12 / 10) * level;
+                        monster.Attack = random_number_generator.Next(scorpion_Stats.Attack * 8 / 10, scorpion_Stats.Attack * 12 * 10) * level;
+                        monster.EXP = random_number_generator.Next(scorpion_Stats.EXP * 8 / 10, scorpion_Stats.EXP * 12 / 10) * level;
                     }
             return monster;
         }

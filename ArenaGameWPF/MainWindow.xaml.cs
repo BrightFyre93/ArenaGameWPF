@@ -26,7 +26,7 @@ namespace ArenaGameWPF
         int type_monster;
         int[] damages; //Array to save the damage being done to hero and monster
         readonly Monsters monsterObject = new Monsters();
-        SetMonster monster = new SetMonster();
+        MonsterStats monster = new MonsterStats();
         HeroStats hero = new HeroStats()
         {
             EXP = 0,
@@ -62,9 +62,9 @@ namespace ArenaGameWPF
             GameAction_Textbox.Text = "";
             GameAction_Textbox.Text += "Base Stats for Level 1";
             GameAction_Textbox.Text += $"\nNo. - Name     - Health (Low-High) - Attack (Low-High) - Monster EXP (Low-High)";
-            GameAction_Textbox.Text += $"\n1   - {monsterObject.snake_Stats.NameofMonster}       -       {monsterObject.snake_Stats.LowerBoundHealth} - {monsterObject.snake_Stats.UpperBoundHealth}             -         {monsterObject.snake_Stats.LowerBoundAttack} - {monsterObject.snake_Stats.UpperBoundAttack}            -         {monsterObject.snake_Stats.LowerBoundEXP} - {monsterObject.snake_Stats.UpperBoundEXP} ";
-            GameAction_Textbox.Text += $"\n2   - {monsterObject.dragon_Stats.NameofMonster}     -       {monsterObject.dragon_Stats.LowerBoundHealth} - {monsterObject.dragon_Stats.UpperBoundHealth}             -         {monsterObject.dragon_Stats.LowerBoundAttack} - {monsterObject.dragon_Stats.UpperBoundAttack}            -         {monsterObject.dragon_Stats.LowerBoundEXP} - {monsterObject.dragon_Stats.UpperBoundEXP} ";
-            GameAction_Textbox.Text += $"\n3   - {monsterObject.scorpion_Stats.NameofMonster}   -       {monsterObject.scorpion_Stats.LowerBoundHealth} - {monsterObject.scorpion_Stats.UpperBoundHealth}             -       {monsterObject.scorpion_Stats.LowerBoundAttack} - {monsterObject.scorpion_Stats.UpperBoundAttack}            -         {monsterObject.scorpion_Stats.LowerBoundEXP} - {monsterObject.scorpion_Stats.UpperBoundEXP} ";
+            GameAction_Textbox.Text += $"\n1   - {monsterObject.snake_Stats.NameofMonster}       -       {monsterObject.snake_Stats.Health * 8/10} - {monsterObject.snake_Stats.Health * 12 / 10}             -         {monsterObject.snake_Stats.Attack * 8 / 10} - {monsterObject.snake_Stats.Attack * 12 / 10}            -         {monsterObject.snake_Stats.EXP * 8 / 10} - {monsterObject.snake_Stats.EXP * 12 / 10} ";
+            GameAction_Textbox.Text += $"\n2   - {monsterObject.dragon_Stats.NameofMonster}     -       {monsterObject.dragon_Stats.Health * 8 / 10} - {monsterObject.dragon_Stats.Health * 12 / 10}             -         {monsterObject.dragon_Stats.Attack * 8 / 10} - {monsterObject.dragon_Stats.Attack * 12 / 10}            -         {monsterObject.dragon_Stats.EXP * 8 / 10} - {monsterObject.dragon_Stats.EXP * 12 / 10} ";
+            GameAction_Textbox.Text += $"\n3   - {monsterObject.scorpion_Stats.NameofMonster}   -       {monsterObject.scorpion_Stats.Health * 8 / 10} - {monsterObject.scorpion_Stats.Health * 12 / 10}             -       {monsterObject.scorpion_Stats.Attack * 8 / 10} - {monsterObject.scorpion_Stats.Attack * 12 / 10}            -         {monsterObject.scorpion_Stats.EXP * 8 / 10} - {monsterObject.scorpion_Stats.EXP * 12 / 10} ";
             Proceed_Button.Visibility = Visibility.Visible;
             MonsterLevel_Textbox.Visibility = Visibility.Visible;
             MonsterType_Label.Visibility = Visibility.Visible;
