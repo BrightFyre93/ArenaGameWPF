@@ -86,14 +86,14 @@ namespace ArenaGameWPF
             try
             {
                 level_monster = Convert.ToInt32(MonsterLevel_Textbox.Text);
-                if (level_monster < 1 || level_monster > 100)
+                if (level_monster < 1)
                 {
-                    GameAction_Textbox.Text += "\nPlease input a level from 1 - 100.";
+                    GameAction_Textbox.Text += "\nPlease input a level.";
                 }
             }
             catch (Exception)
             {
-                GameAction_Textbox.Text += "\nPlease input a level from 1 - 100.";
+                GameAction_Textbox.Text += "\nPlease input a level greater than 1.";
             }
             try
             {
@@ -166,6 +166,12 @@ namespace ArenaGameWPF
         protected override void OnClosing(CancelEventArgs e)
         {
             MainWindow.Get_Hero_Values(hero);
+        }
+
+        private void FuncInventory_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Inventory newInventoryWindow = new Inventory();
+            newInventoryWindow.Show();
         }
     }
 }

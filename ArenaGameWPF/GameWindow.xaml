@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="465.957" Width="942.021">
     <Grid>
-        <Button x:Name="FuncAttack_Button" Content="Attack" HorizontalAlignment="Left" Margin="252,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncAttack_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncDefend_Button" Content="Defend" HorizontalAlignment="Left" Margin="352,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncDefend_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncHeal_Button" Content="Heal" HorizontalAlignment="Left" Margin="452,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncHeal_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncRetreat_Button" Content="Retreat" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncRetreat_Button_Click" Visibility="Hidden"/>
-        <TextBox x:Name="GameAction_Textbox" Text="" HorizontalAlignment="Left" Margin="10,162,0,18" Width="914" ScrollViewer.CanContentScroll="True" FontSize="16" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
+        <Button x:Name="FuncAttack_Button" Content="Attack" HorizontalAlignment="Left" Margin="252,150,0,0" VerticalAlignment="Top" Width="75" Click="FuncAttack_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncDefend_Button" Content="Defend" HorizontalAlignment="Left" Margin="352,150,0,0" VerticalAlignment="Top" Width="75" Click="FuncDefend_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncHeal_Button" Content="Heal" HorizontalAlignment="Left" Margin="452,150,0,0" VerticalAlignment="Top" Width="75" Click="FuncHeal_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncRetreat_Button" Content="Retreat" HorizontalAlignment="Left" Margin="552,150,0,0" VerticalAlignment="Top" Width="75" Click="FuncRetreat_Button_Click" Visibility="Hidden"/>
+        <TextBox x:Name="GameAction_Textbox" Text="" HorizontalAlignment="Left" Margin="10,180,0,18" Width="914" ScrollViewer.CanContentScroll="True" FontSize="16" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
         <Image x:Name="Hero_Image" HorizontalAlignment="Left" Height="128" Margin="86,10,0,0" VerticalAlignment="Top" Width="128" Panel.ZIndex="1"/>
         <Image x:Name="Monster_Image" Height="128" Margin="660,10,-116.4,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="128" Panel.ZIndex="1"/>
         <Rectangle x:Name="Hero_Background_Rectangle" Fill="#FFE0E0E0" HorizontalAlignment="Left" Height="128" Margin="86,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="128"/>
@@ -24,6 +24,7 @@
         <Label x:Name="MonsterLevel_Label" Content="Monster Level 1-100" HorizontalAlignment="Left" Margin="290,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.401,0.641"/>
         <Label x:Name="MonsterType_Label" Content="Monster Type 1-3" HorizontalAlignment="Left" Margin="479,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.401,0.641"/>
         <Label x:Name="HeroName_Label" Content="Hero Name: " HorizontalAlignment="Left" Margin="819,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.361,0.422"/>
+        <Button x:Name ="FuncInventory_Button" Content="Inventory" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncInventory_Button_Click"/>
 
     </Grid>
 </Window>
