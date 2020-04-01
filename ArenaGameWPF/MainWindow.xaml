@@ -5,25 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArenaGameWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="527.2" Width="1000">
+        Title="MainWindow" Height="268.225" Width="700.328">
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Margin="0,0,-0.4,5.4">
-        <Button x:Name="StartGame_Button" Content="Start Game" HorizontalAlignment="Left" Margin="427,55,0,0" VerticalAlignment="Top" Width="90" Click="Start_Journey"/>
-        <Label x:Name="Info_Label" Content="Would you like to start a new game?" HorizontalAlignment="Left" Margin="338,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="HeroLevel_Label" Content="Hero Level: 1" HorizontalAlignment="Left" Margin="871,4,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="HeroEXP_Label" Content="Hero EXP: 0" HorizontalAlignment="Left" Margin="871,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.361,0.422"/>
-        <TextBox x:Name="MonsterLevel_Textbox" Text="1" HorizontalAlignment="Left" Height="23" Margin="320,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <Button x:Name="Proceed_Button" Content="Proceed" HorizontalAlignment="Left" Margin="435,170,0,0" VerticalAlignment="Top" Width="75" Click="ProceedButton_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncAttack_Button" Content="Attack" HorizontalAlignment="Left" Margin="286,200,0,0" VerticalAlignment="Top" Width="75" Click="FuncAttack_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncDefend_Button" Content="Defend" HorizontalAlignment="Left" Margin="386,200,0,0" VerticalAlignment="Top" Width="75" Click="FuncDefend_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncHeal_Button" Content="Heal" HorizontalAlignment="Left" Margin="486,200,0,0" VerticalAlignment="Top" Width="75" Click="FuncHeal_Button_Click" Visibility="Hidden"/>
-        <Button x:Name="FuncRetreat_Button" Content="Retreat" HorizontalAlignment="Left" Margin="586,200,0,0" VerticalAlignment="Top" Width="75" Click="FuncRetreat_Button_Click" Visibility="Hidden"/>
-        <TextBox x:Name="MonsterType_Textbox" Text="1" HorizontalAlignment="Left" Height="23" Margin="509,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <Label x:Name="MonsterLevel_Label" Content="Monster Level 1-100" HorizontalAlignment="Left" Margin="320,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.401,0.641" Visibility="Hidden"/>
-        <Label x:Name="MonsterType_Label" Content="Monster Type 1-3" HorizontalAlignment="Left" Margin="509,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.401,0.641" Visibility="Hidden"/>
-        <TextBox x:Name="GameAction_Textbox" Text="" HorizontalAlignment="Left" Margin="39,242,0,10" Width="914" ScrollViewer.CanContentScroll="True" FontSize="16" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
-        <Image x:Name="Hero_Image" HorizontalAlignment="Left" Height="128" Margin="50,90,0,0" VerticalAlignment="Top" Width="128" Panel.ZIndex="1"/>
-        <Image x:Name="Monster_Image" Height="128" Margin="816,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="128" Panel.ZIndex="1"/>
-        <Rectangle x:Name="Hero_Background_Rectangle" Fill="#FFE0E0E0" HorizontalAlignment="Left" Height="128" Margin="50,90,0,0" Stroke="Black" VerticalAlignment="Top" Width="128"/>
-        <Rectangle x:Name="Monster_Background_Rectangle" Fill="#FFE0E0E0" HorizontalAlignment="Left" Height="128" Margin="816,90,0,0" Stroke="Black" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="StartGame_Button" Content="Start Game" HorizontalAlignment="Left" Margin="275,152,0,0" VerticalAlignment="Top" Width="90" Click="Start_Journey"/>
+        <Label x:Name="Info_Label" Content="Would you like to start a new game?" HorizontalAlignment="Left" Margin="186,23,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="Name_Textbox" HorizontalAlignment="Left" Height="23" Margin="265,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Name_Label" Content="Enter Name of Hero" HorizontalAlignment="Left" Margin="263,73,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
