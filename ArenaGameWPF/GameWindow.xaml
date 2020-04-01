@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="465.957" Width="942.021">
     <Grid>
-        <Button x:Name="FuncAttack_Button" Content="Attack" HorizontalAlignment="Left" Margin="252,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncAttack_Button_Click"/>
-        <Button x:Name="FuncDefend_Button" Content="Defend" HorizontalAlignment="Left" Margin="352,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncDefend_Button_Click"/>
-        <Button x:Name="FuncHeal_Button" Content="Heal" HorizontalAlignment="Left" Margin="452,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncHeal_Button_Click"/>
-        <Button x:Name="FuncRetreat_Button" Content="Retreat" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncRetreat_Button_Click"/>
+        <Button x:Name="FuncAttack_Button" Content="Attack" HorizontalAlignment="Left" Margin="252,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncAttack_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncDefend_Button" Content="Defend" HorizontalAlignment="Left" Margin="352,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncDefend_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncHeal_Button" Content="Heal" HorizontalAlignment="Left" Margin="452,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncHeal_Button_Click" Visibility="Hidden"/>
+        <Button x:Name="FuncRetreat_Button" Content="Retreat" HorizontalAlignment="Left" Margin="552,120,0,0" VerticalAlignment="Top" Width="75" Click="FuncRetreat_Button_Click" Visibility="Hidden"/>
         <TextBox x:Name="GameAction_Textbox" Text="" HorizontalAlignment="Left" Margin="10,162,0,18" Width="914" ScrollViewer.CanContentScroll="True" FontSize="16" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
         <Image x:Name="Hero_Image" HorizontalAlignment="Left" Height="128" Margin="86,10,0,0" VerticalAlignment="Top" Width="128" Panel.ZIndex="1"/>
         <Image x:Name="Monster_Image" Height="128" Margin="660,10,-116.4,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="128" Panel.ZIndex="1"/>

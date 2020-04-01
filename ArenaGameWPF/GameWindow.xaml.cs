@@ -27,15 +27,10 @@ namespace ArenaGameWPF
             GameAction_Textbox.Text += $"\n2   - {monsterObject.dragon_Stats.NameofMonster}     -       {monsterObject.dragon_Stats.Health * 8 / 10} - {monsterObject.dragon_Stats.Health * 12 / 10}             -        {monsterObject.dragon_Stats.Attack * 8 / 10} - {monsterObject.dragon_Stats.Attack * 12 / 10}          -       {monsterObject.dragon_Stats.Defense * 8 / 10} - {monsterObject.dragon_Stats.Defense * 12 / 10}          -         {monsterObject.dragon_Stats.EXP * 8 / 10} - {monsterObject.dragon_Stats.EXP * 12 / 10} ";
             GameAction_Textbox.Text += $"\n3   - {monsterObject.scorpion_Stats.NameofMonster}   -       {monsterObject.scorpion_Stats.Health * 8 / 10} - {monsterObject.scorpion_Stats.Health * 12 / 10}             -       {monsterObject.scorpion_Stats.Attack * 8 / 10} - {monsterObject.scorpion_Stats.Attack * 12 / 10}            -       {monsterObject.scorpion_Stats.Defense * 8 / 10} - {monsterObject.scorpion_Stats.Defense * 12 / 10}            -         {monsterObject.scorpion_Stats.EXP * 8 / 10} - {monsterObject.scorpion_Stats.EXP * 12 / 10} ";
             hero = hero_stats;
-            hero = Hero.SetHero(hero.Level, hero.EXP, hero.NameofHero);
             HeroLevel_Label.Content = $"Hero Level: {hero.Level}";
             HeroEXP_Label.Content = $"Hero EXP: {hero.EXP}";
             HeroName_Label.Content = $"Hero Name: {hero.NameofHero}";
-            Proceed_Button.Visibility = Visibility.Visible;
-            MonsterLevel_Textbox.Visibility = Visibility.Visible;
-            MonsterType_Label.Visibility = Visibility.Visible;
-            MonsterLevel_Label.Visibility = Visibility.Visible;
-            MonsterType_Textbox.Visibility = Visibility.Visible;
+            MakeResetAvailableAfterGame();
             Hero_Image.Source = new BitmapImage(new Uri(@"\Resources\Hero\Default\HeroPixelArt 64 pixel.png", UriKind.Relative));
         }
         private void MakeResetAvailableAfterGame()
@@ -55,7 +50,7 @@ namespace ArenaGameWPF
         {
             Monster_Image.Source = new BitmapImage(new Uri(source, UriKind.Relative));
         }
-        public void FightFinish(double[] damages)
+        public void Fight(double[] damages)
         {
             hero.Health -= damages[0];
             monster.Health -= damages[1];
@@ -87,6 +82,7 @@ namespace ArenaGameWPF
         }
         private void ProceedButton_Click(object sender, RoutedEventArgs e)
         {
+            hero = Hero.SetHero(hero.Level, hero.EXP, hero.NameofHero);
             try
             {
                 level_monster = Convert.ToInt32(MonsterLevel_Textbox.Text);
@@ -134,14 +130,14 @@ namespace ArenaGameWPF
             damages = Functions.FuncAttack(hero, monster);
             GameAction_Textbox.Text += $"\nHero did {String.Format("{0:0.00}", damages[1])} damage to Monster.";
             GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-            FightFinish(damages);
+            Fight(damages);
         }
         private void FuncDefend_Button_Click(object sender, RoutedEventArgs e)
         {
             damages = Functions.FuncDefend(hero, monster);
             GameAction_Textbox.Text += $"\nHero defended.";
             GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-            FightFinish(damages);
+            Fight(damages);
         }
         private void FuncHeal_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -149,7 +145,7 @@ namespace ArenaGameWPF
             GameAction_Textbox.Text += $"\nHero healed his/her health by {String.Format("{0:0.00}", sepdamage[0])} points.";
             GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", sepdamage[1])} damage to Hero.";
             damages = new double[] { sepdamage[1] - sepdamage[0], 0 }; //Converted from separate damage values to final damage values
-            FightFinish(damages);
+            Fight(damages);
         }
         private void FuncRetreat_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -163,7 +159,7 @@ namespace ArenaGameWPF
                 GameAction_Textbox.Text += "\nHero retreat failed.";
                 damages = Functions.FuncFailedRetreat(hero, monster);
                 GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-                FightFinish(damages);
+                Fight(damages);
             }
 
         }

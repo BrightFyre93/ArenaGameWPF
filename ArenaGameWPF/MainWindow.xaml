@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArenaGameWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="268.225" Width="700.328">
+        Title="MainWindow" Height="214.625" Width="465.128">
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Margin="0,0,-0.4,5.4">
-        <Button x:Name="StartGame_Button" Content="Start Game" HorizontalAlignment="Left" Margin="275,152,0,0" VerticalAlignment="Top" Width="90" Click="Start_Journey"/>
-        <Label x:Name="Info_Label" Content="Would you like to start a new game?" HorizontalAlignment="Left" Margin="186,23,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="Name_Textbox" HorizontalAlignment="Left" Height="23" Margin="265,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Name_Label" Content="Enter Name of Hero" HorizontalAlignment="Left" Margin="263,73,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="StartGame_Button" Content="Start Game" HorizontalAlignment="Left" Margin="195,103,0,0" VerticalAlignment="Top" Width="75" Click="Start_Journey" RenderTransformOrigin="0.476,-0.24"/>
+        <Label x:Name="Info_Label" Content="Would you like to start a new game?" HorizontalAlignment="Left" Margin="99,15,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="Name_Textbox" HorizontalAlignment="Left" Height="23" Margin="172,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Name_Label" Content="Enter Name of Hero" HorizontalAlignment="Left" Margin="175,45,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Left" Margin="195,127,0,0" VerticalAlignment="Top" Width="75" Click="Save_Button_Click"/>
+        <Button x:Name="Load_Button" Content="Load" HorizontalAlignment="Left" Margin="195,151,0,0" VerticalAlignment="Top" Width="75" Click="Load_Button_Click"/>
     </Grid>
 </Window>
