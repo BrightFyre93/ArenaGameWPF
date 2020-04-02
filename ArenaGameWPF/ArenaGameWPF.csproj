@@ -124,7 +124,7 @@
     <Resource Include="Resources\Monster\Snake\SnakePixelArt 64 pixels.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Monster\Default\DefaultPixelArt 64 pixels.png" />
+    <Resource Include="Resources\Default\DefaultPixelArt 64 pixels.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

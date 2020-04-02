@@ -9,7 +9,7 @@
     <Grid>
         <Grid x:Name="Grid_FirstRow">
             <Rectangle x:Name="Inventory_Item_1_Rectangle" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="42" Margin="4,4,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
-            <Image x:Name="Inventory_Item_1_Image" Source ="/Resources/Monster/Default/DefaultPixelArt 64 pixels.png" MouseDown="Image_MouseDown" Panel.ZIndex = "1" HorizontalAlignment="Left" Height="40" Margin="5,5,0,0" VerticalAlignment="Top" Width="40"/>
+            <Image x:Name="Inventory_Item_1_Image" Source ="/Resources/Default/DefaultPixelArt 64 pixels.png" MouseDown="Image_MouseDown" Panel.ZIndex = "1" HorizontalAlignment="Left" Height="40" Margin="5,5,0,0" VerticalAlignment="Top" Width="40"/>
             <Rectangle x:Name="Inventory_Item_2_Rectangle" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="42" Margin="49,4,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
             <Image x:Name="Inventory_Item_2_Image" MouseDown="Image_MouseDown" Panel.ZIndex = "1" HorizontalAlignment="Left" Height="40" Margin="365,5,0,0" VerticalAlignment="Top" Width="40"/>
             <Rectangle x:Name="Inventory_Item_3_Rectangle" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="42" Margin="94,4,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>

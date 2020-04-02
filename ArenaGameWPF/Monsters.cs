@@ -65,7 +65,7 @@ namespace ArenaGameWPF
             }
             else//Default
             {
-                return @"\Resources\Monster\Default\DefaultPixelArt 64 pixels.png";
+                return @"\Resources\Default\DefaultPixelArt 64 pixels.png";
             }
         }
         public MonsterStats PickMonster(int level, int type)
