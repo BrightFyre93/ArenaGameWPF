@@ -126,5 +126,47 @@
   <ItemGroup>
     <Resource Include="Resources\Default\DefaultPixelArt 64 pixels.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Items\ARMOR - ENDGAME\" />
+    <Folder Include="Resources\Items\ARMOR - GOOD\" />
+    <Folder Include="Resources\Items\ARMOR - MEDIOCRE\" />
+    <Folder Include="Resources\Items\ARMOR - POOR\" />
+    <Folder Include="Resources\Items\BOOTS - ENDGAME\" />
+    <Folder Include="Resources\Items\BOOTS - GOOD\" />
+    <Folder Include="Resources\Items\BOOTS - MEDIOCRE\" />
+    <Folder Include="Resources\Items\BOOTS - POOR\" />
+    <Folder Include="Resources\Items\GLOVES - ENDGAME\" />
+    <Folder Include="Resources\Items\GLOVES - GOOD\" />
+    <Folder Include="Resources\Items\GLOVES - MEDIOCRE\" />
+    <Folder Include="Resources\Items\GLOVES - POOR\" />
+    <Folder Include="Resources\Items\HELMET - ENDGAME\" />
+    <Folder Include="Resources\Items\HELMET - GOOD\" />
+    <Folder Include="Resources\Items\HELMET - MEDIOCRE\" />
+    <Folder Include="Resources\Items\HELMET - POOR\" />
+    <Folder Include="Resources\Items\PANTS - ENDGAME\" />
+    <Folder Include="Resources\Items\PANTS - GOOD\" />
+    <Folder Include="Resources\Items\PANTS - MEDIOCRE\" />
+    <Folder Include="Resources\Items\PANTS - POOR\" />
+    <Folder Include="Resources\Items\WEAPON - ENDGAME\" />
+    <Folder Include="Resources\Items\WEAPON - GOOD\" />
+    <Folder Include="Resources\Items\WEAPON - MEDIOCRE\" />
+    <Folder Include="Resources\Items\WEAPON - POOR\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Items\AGI UP\AGI UP 64px.png" />
+    <Resource Include="Resources\Items\ATK UP\ATK UP 64px.png" />
+    <Resource Include="Resources\Items\BURN HEAL\BURN HEAL 64px.png" />
+    <Resource Include="Resources\Items\CONFUSE BERRY\Confuse Berry 64px.png" />
+    <Resource Include="Resources\Items\CONFUSE HEAL\CONFUSE HEAL 64px.png" />
+    <Resource Include="Resources\Items\DEF UP\DEF UP 64px.png" />
+    <Resource Include="Resources\Items\HLTH UP\HLTH UP 64 px.png" />
+    <Resource Include="Resources\Items\ICE HEAL\ICE HEAL 64px.png" />
+    <Resource Include="Resources\Items\POISON HEAL\POISON HEAL 64px.png" />
+    <Resource Include="Resources\Items\POISON\POISON 64px.png" />
+    <Resource Include="Resources\Items\POTION - LARGE\Potion - Large 64px.png" />
+    <Resource Include="Resources\Items\POTION\Potion 64px.png" />
+    <Resource Include="Resources\Items\STUN BERRY\Stun Berry 64px.png" />
+    <Resource Include="Resources\Items\STUN HEAL\STUN HEAL 64px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
