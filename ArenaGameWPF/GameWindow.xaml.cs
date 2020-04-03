@@ -17,6 +17,8 @@ namespace ArenaGameWPF
         MonsterStats monster = new MonsterStats();
         HeroStats hero = new HeroStats();
         readonly static Random random_number_generator = new Random();
+        readonly MainWindow myMainWindow = (MainWindow)Application.Current.MainWindow;
+        int turnCount = 0;
         public GameWindow(HeroStats hero_stats)
         {
             InitializeComponent();
@@ -52,6 +54,7 @@ namespace ArenaGameWPF
         }
         public void Fight(double[] damages)
         {
+            turnCount++;
             hero.Health -= damages[0];
             monster.Health -= damages[1];
             if (monster.Health < 0)
@@ -167,10 +170,9 @@ namespace ArenaGameWPF
         {
             MainWindow.Get_Hero_Values(hero);
         }
-
         private void FuncInventory_Button_Click(object sender, RoutedEventArgs e)
         {
-            Inventory newInventoryWindow = new Inventory();
+            Inventory newInventoryWindow = new Inventory(myMainWindow.currentInventory);
             newInventoryWindow.Show();
         }
     }

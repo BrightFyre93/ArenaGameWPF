@@ -16,6 +16,9 @@ namespace ArenaGameWPF
             EXP = 0,
             Level = 1
         };
+        //Creating an object for New Inventory
+        public object[] currentInventory = new object[81];
+
         // Specify a name for your using Environment for My Documents.
         readonly static string myDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
@@ -26,11 +29,14 @@ namespace ArenaGameWPF
         public MainWindow()
         {
             InitializeComponent();
-
         }
-        public void SetHeroName()
+            public void SetHeroName()
         {
             hero.NameofHero = Name_Textbox.Text;
+        }
+        public void SetInventoryAtClose(object[] newInventory)
+        {
+            currentInventory = newInventory;
         }
         private void Start_Journey(object sender, RoutedEventArgs e)
         {
