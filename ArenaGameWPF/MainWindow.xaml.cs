@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Win32;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace ArenaGameWPF
 {
@@ -14,10 +15,20 @@ namespace ArenaGameWPF
         readonly static HeroStats hero = new HeroStats()
         {
             EXP = 0,
-            Level = 1
+            Level = 1,
+            turnConfusedStatus = 0,
+            turnPoisonedStatus = 0,
+            turnStunnedStatus = 0,
+            turnBurnedStatus = 0,
+            turnFrozenStatus = 0,
+            turnAttackUpStatus = 0,
+            turnHealthUpStatus = 0,
+            turnDefenseUpStatus = 0,
+            turnAgilityUpStatus = 0
+
         };
         //Creating an object for New Inventory
-        public object[] currentInventory = new object[81];
+        public List<object> currentInventory = new List<object>();
 
         // Specify a name for your using Environment for My Documents.
         readonly static string myDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -34,7 +45,7 @@ namespace ArenaGameWPF
         {
             hero.NameofHero = Name_Textbox.Text;
         }
-        public void SetInventoryAtClose(object[] newInventory)
+        public void SetInventoryAtClose(List<object> newInventory)
         {
             currentInventory = newInventory;
         }

@@ -10,10 +10,20 @@ namespace ArenaGameWPF
     {
         
         readonly static Random random_number_generator = new Random();
-
+        public static int FuncConfuse()
+        {
+            if (random_number_generator.NextDouble()>0.9) //10% chance to get confused for three turns
+            {
+                return 3;
+            }
+            else
+            {
+                return 0;
+            }    
+        }
         public static double CalculateDamage(double attack, double defense)
         {
-            double damage = attack * attack / (attack + defense) * ((random_number_generator.NextDouble() * 40.0 + 215)/235);
+            double damage = attack * attack / (attack + defense) * ((random_number_generator.NextDouble() * 40.0 + 215) / 235);
             return damage;
         }
         public static double[] FuncAttack(HeroStats hero, MonsterStats monster)

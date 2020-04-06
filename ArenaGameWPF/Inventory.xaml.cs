@@ -35,22 +35,22 @@ namespace ArenaGameWPF
         public string secondaryStat;//Health, Attack, Defense, Agility
         public double secondayStatEffect;//Amount of change to Primary Stat
         public double dropRate;// Defines the likelihood of the item being dropped at the end of a fight from 0-1
-        public double breakRate;//Chance for item to break while being used. Actual break rate will also be effected by number of turns item has been requipped.
     }
     public partial class Inventory : Window
     {
         readonly public List<object> inventoryItems = new List<object>();
         
         int itemSelected;
-        object[] inventoryInUse; //currentInventory object including Armor and Consumables
+        List<object> inventoryInUse; //currentInventory object including Armor and Consumables
         readonly MainWindow myMainWindow = (MainWindow)Application.Current.MainWindow;
-        public Inventory(object[] HeroInventory)
+        public Inventory(List<object> HeroInventory)
         {
             InitializeComponent();
             inventoryInUse = HeroInventory;
             DisplayInventoryItems();
             itemSelected = 0;
             PopulateItems();
+            InventoryCount();
         }
         private void PopulateItems()
         {
@@ -282,7 +282,7 @@ namespace ArenaGameWPF
         private void DisplayInventoryItems()
         {
             var converter = new ImageSourceConverter();
-            for ( int item = 0; item < inventoryInUse.Length;item++)
+            for ( int item = 0; item < inventoryInUse.Count;item++)
             {
                 string ImgName = $"Inventory_Item_{item}_Image";
                 Image img = (Image)this.FindName(ImgName);
@@ -306,6 +306,10 @@ namespace ArenaGameWPF
                 }
             }
         }
+        private void InventoryCount()
+        {
+            ItemCount_Label.Content = $"Item Count: {inventoryInUse.Count}/81";
+        }
         private void SelectionColourChange(int item_number, string colorHex)
         {
             string RectangleName = $"Inventory_Item_{item_number}_Rectangle";
@@ -322,7 +326,7 @@ namespace ArenaGameWPF
             Image img = sender as Image;
             string[] nameString = img.Name.Split('_');
             itemSelected = Convert.ToInt32(nameString[2]);
-            if(itemSelected > inventoryInUse.Length)
+            if(itemSelected > inventoryInUse.Count)
             {
                 itemSelected = 0;
             }
@@ -337,14 +341,14 @@ namespace ArenaGameWPF
         }
         private void Delete_Button_Click(object sender, RoutedEventArgs e)
         {
-            object[] tempinventory = inventoryInUse;
+            List<object> tempinventory = inventoryInUse;
             if (itemSelected != 0)
             {
                 if (MessageBox.Show("Are you sure you wish to delete this item?", "Inventory", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        for(int inventorycount = itemSelected;inventorycount < inventoryInUse.Length;inventorycount++)
+                        for(int inventorycount = itemSelected;inventorycount < inventoryInUse.Count;inventorycount++)
                         {
                             inventoryInUse[inventorycount - 1] = inventoryInUse[inventorycount]; //Replacing the deleted item with the next item in the array
                             DisplayInventoryItems();
@@ -366,6 +370,7 @@ namespace ArenaGameWPF
             {
                 MessageBox.Show("Please select an item first.");
             }
+            InventoryCount();
         }
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {

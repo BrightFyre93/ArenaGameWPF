@@ -15,8 +15,18 @@ namespace ArenaGameWPF
         public double Health;
         public double Attack;
         public double Defense;
+        public double Agility;
         public int EXP;
         public int Level;
+        public int turnConfusedStatus; //0 - No Effect //Number of Turns - Effect active for
+        public int turnPoisonedStatus;   //0 - No Effect //Number of Turns - Effect active for
+        public int turnStunnedStatus;    //0 - No Effect //Number of Turns - Effect active for
+        public int turnBurnedStatus;     //0 - No Effect //Number of Turns - Effect active for
+        public int turnFrozenStatus;     //0 - No Effect //Number of Turns - Effect active for
+        public int turnAttackUpStatus;   //0 - No Effect //Number of Turns - Effect active for
+        public int turnHealthUpStatus;   //0 - No Effect //Number of Turns - Effect active for
+        public int turnDefenseUpStatus;  //0 - No Effect //Number of Turns - Effect active for
+        public int turnAgilityUpStatus;  //0 - No Effect //Number of Turns - Effect active for
     }
     class Monsters
     {
@@ -31,7 +41,17 @@ namespace ArenaGameWPF
             Health = 50.0,
             Attack = 10.0,
             EXP = 20,
-            Defense = 8.0
+            Defense = 8.0,
+            Agility = 10.0,
+            turnConfusedStatus = 0,
+            turnPoisonedStatus = 0,
+            turnStunnedStatus = 0,
+            turnBurnedStatus = 0,
+            turnFrozenStatus = 0,
+            turnAttackUpStatus = 0,
+            turnHealthUpStatus = 0,
+            turnDefenseUpStatus = 0,
+            turnAgilityUpStatus = 0
         };
         public MonsterStats dragon_Stats = new MonsterStats()
         {
@@ -39,7 +59,17 @@ namespace ArenaGameWPF
             Health = 80.0,
             Attack = 8.0,
             EXP = 30,
-            Defense = 9.0
+            Defense = 9.0,
+            Agility = 9.0,
+            turnConfusedStatus = 0,
+            turnPoisonedStatus = 0,
+            turnStunnedStatus = 0,
+            turnBurnedStatus = 0,
+            turnFrozenStatus = 0,
+            turnAttackUpStatus = 0,
+            turnHealthUpStatus = 0,
+            turnDefenseUpStatus = 0,
+            turnAgilityUpStatus = 0
         };
         public MonsterStats scorpion_Stats = new MonsterStats()
         {
@@ -47,7 +77,17 @@ namespace ArenaGameWPF
             Health = 30.0,
             Attack = 20.0,
             EXP = 25,
-            Defense = 7.0
+            Defense = 7.0,
+            Agility = 8.0,
+            turnConfusedStatus = 0,
+            turnPoisonedStatus = 0,
+            turnStunnedStatus = 0,
+            turnBurnedStatus = 0,
+            turnFrozenStatus = 0,
+            turnAttackUpStatus = 0,
+            turnHealthUpStatus = 0,
+            turnDefenseUpStatus = 0,
+            turnAgilityUpStatus = 0
         };
         public static string SetImageSource(int type)
         {

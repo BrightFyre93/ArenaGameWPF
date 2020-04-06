@@ -18,7 +18,6 @@ namespace ArenaGameWPF
         HeroStats hero = new HeroStats();
         readonly static Random random_number_generator = new Random();
         readonly MainWindow myMainWindow = (MainWindow)Application.Current.MainWindow;
-        int turnCount = 0;
         public GameWindow(HeroStats hero_stats)
         {
             InitializeComponent();
@@ -52,11 +51,135 @@ namespace ArenaGameWPF
         {
             Monster_Image.Source = new BitmapImage(new Uri(source, UriKind.Relative));
         }
-        public void Fight(double[] damages)
+
+        private Boolean CheckforConfusion(int turnConfusedStatus)
         {
-            turnCount++;
-            hero.Health -= damages[0];
-            monster.Health -= damages[1];
+            if (turnConfusedStatus != 0) //If Monster is in confused state
+            {
+                if (random_number_generator.NextDouble() > 0.5)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private void TurnSubtract() //Update the turns for the hero and monsters
+        {
+            //Hero
+            hero.turnConfusedStatus = (hero.turnConfusedStatus != 0) ? hero.turnConfusedStatus - 1 : 0;
+            hero.turnAgilityUpStatus = (hero.turnAgilityUpStatus != 0) ? hero.turnAgilityUpStatus - 1 : 0;
+            hero.turnAttackUpStatus = (hero.turnAttackUpStatus != 0) ? hero.turnAttackUpStatus - 1 : 0;
+            hero.turnBurnedStatus = (hero.turnBurnedStatus != 0) ? hero.turnBurnedStatus - 1 : 0;
+            hero.turnDefenseUpStatus = (hero.turnDefenseUpStatus != 0) ? hero.turnDefenseUpStatus - 1 : 0;
+            hero.turnFrozenStatus = (hero.turnFrozenStatus != 0) ? hero.turnFrozenStatus - 1 : 0;
+            hero.turnHealthUpStatus = (hero.turnHealthUpStatus != 0) ? hero.turnHealthUpStatus - 1 : 0;
+            hero.turnPoisonedStatus = (hero.turnPoisonedStatus != 0) ? hero.turnPoisonedStatus - 1 : 0;
+            hero.turnStunnedStatus = (hero.turnStunnedStatus != 0) ? hero.turnStunnedStatus - 1 : 0;
+            //Monster
+            monster.turnConfusedStatus = (monster.turnConfusedStatus != 0) ? monster.turnConfusedStatus - 1 : 0;
+            monster.turnAgilityUpStatus = (monster.turnAgilityUpStatus != 0) ? monster.turnAgilityUpStatus - 1 : 0;
+            monster.turnAttackUpStatus = (monster.turnAttackUpStatus != 0) ? monster.turnAttackUpStatus - 1 : 0;
+            monster.turnBurnedStatus = (monster.turnBurnedStatus != 0) ? monster.turnBurnedStatus - 1 : 0;
+            monster.turnDefenseUpStatus = (monster.turnDefenseUpStatus != 0) ? monster.turnDefenseUpStatus - 1 : 0;
+            monster.turnFrozenStatus = (monster.turnFrozenStatus != 0) ? monster.turnFrozenStatus - 1 : 0;
+            monster.turnHealthUpStatus = (monster.turnHealthUpStatus != 0) ? monster.turnHealthUpStatus - 1 : 0;
+            monster.turnPoisonedStatus = (monster.turnPoisonedStatus != 0) ? monster.turnPoisonedStatus - 1 : 0;
+            monster.turnStunnedStatus = (monster.turnStunnedStatus != 0) ? monster.turnStunnedStatus - 1 : 0;
+        }
+        private void CheckForDrops()
+        {
+            Inventory tempInventory = new Inventory(null);
+            foreach (object item in tempInventory.inventoryItems)
+            {
+                if(item is InventoryConsumable)
+                {
+                    double droprate = ((InventoryConsumable)item).dropRate;
+                    if (random_number_generator.NextDouble()>droprate)
+                    {
+                        myMainWindow.currentInventory.Add(item);
+                    }
+                }
+            }
+
+        }
+        private void UpdateDamages(double[] damages, string TypeofFunc)
+        {
+            //Hero
+            while (true)
+            {
+                if(CheckforConfusion(hero.turnConfusedStatus))
+                {
+                    if(TypeofFunc == "Attack")
+                    {
+                        hero.Health -= damages[1];
+                        GameAction_Textbox.Text += $"\nHero hurt itself in its confusion.";
+                    }
+                    else if(TypeofFunc == "Defend")
+                    {
+                        hero.Health -= damages[1];
+                        GameAction_Textbox.Text += $"\nHero hurt itself in its confusion.";
+                    }
+                    else if(TypeofFunc == "Heal")
+                    {
+                        monster.Health += damages[0];
+                        GameAction_Textbox.Text += $"\nHero healer the monster in its confusion.";
+                    }
+                    else if(TypeofFunc == "Retreat")
+                    {
+                        hero.Health -= damages[1];
+                        GameAction_Textbox.Text += $"\nHero failed the retreat.";
+                    }
+                    break;
+                }
+                else
+                {
+                    if (TypeofFunc == "Attack")
+                    {
+                        monster.Health -= damages[1];
+                        GameAction_Textbox.Text += $"\nHero did {String.Format("{0:0.00}", damages[1])} damage to Monster.";
+                    }
+                    else if (TypeofFunc == "Defend")
+                    {
+                        monster.Health -= damages[1];
+                        GameAction_Textbox.Text += $"\nHero defended.";
+                    }
+                    else if (TypeofFunc == "Heal")
+                    {
+                        hero.Health = (hero.Health + damages[0] > (hero.Level *100)? hero.Level * 100 : hero.Health + damages[0]);
+                        GameAction_Textbox.Text += $"\nHero healed his/her health by {String.Format("{0:0.00}", damages[0])} points.";
+                    }
+                    else if (TypeofFunc == "Retreat")
+                    {
+                        monster.Health -= damages[1];
+                        GameAction_Textbox.Text += "\nHero retreat failed.";
+                    }
+                    break;
+                }
+            }
+
+
+            //Monster
+            while (true)
+            {
+                if (CheckforConfusion(monster.turnConfusedStatus))
+                {
+                    monster.Health -= damages[0];
+                    GameAction_Textbox.Text += $"\nMonster hurt itself in its confusion.";
+                    break;
+                }
+                else
+                {
+                    hero.Health -= damages[0];
+                    GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
+                    break;
+
+                }
+            }
+        }
+        public void Fight(double[] damages, string TypeofFunc)
+        {
+            UpdateDamages(damages,TypeofFunc);
+            TurnSubtract();
             if (monster.Health < 0)
             {
                 GameAction_Textbox.Text += $"\nCurrent HP:\nHero - {String.Format("{0:0.00}", hero.Health)} \nMonster - 0";
@@ -68,6 +191,7 @@ namespace ArenaGameWPF
             if (hero.Health <= 0)
             {
                 GameAction_Textbox.Text += "\nDrats! You lost!";
+                CheckForDrops();
                 MakeResetAvailableAfterGame();
             }
             else if (monster.Health <= 0)
@@ -85,7 +209,7 @@ namespace ArenaGameWPF
         }
         private void ProceedButton_Click(object sender, RoutedEventArgs e)
         {
-            hero = Hero.SetHero(hero.Level, hero.EXP, hero.NameofHero);
+            hero = Hero.SetHero(hero);
             try
             {
                 level_monster = Convert.ToInt32(MonsterLevel_Textbox.Text);
@@ -131,24 +255,17 @@ namespace ArenaGameWPF
         private void FuncAttack_Button_Click(object sender, RoutedEventArgs e)
         {
             damages = Functions.FuncAttack(hero, monster);
-            GameAction_Textbox.Text += $"\nHero did {String.Format("{0:0.00}", damages[1])} damage to Monster.";
-            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-            Fight(damages);
+            Fight(damages,"Attack");
         }
         private void FuncDefend_Button_Click(object sender, RoutedEventArgs e)
         {
             damages = Functions.FuncDefend(hero, monster);
-            GameAction_Textbox.Text += $"\nHero defended.";
-            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-            Fight(damages);
+            Fight(damages,"Defend");
         }
         private void FuncHeal_Button_Click(object sender, RoutedEventArgs e)
         {
             double[] sepdamage = Functions.FuncHeal(hero, monster);
-            GameAction_Textbox.Text += $"\nHero healed his/her health by {String.Format("{0:0.00}", sepdamage[0])} points.";
-            GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", sepdamage[1])} damage to Hero.";
-            damages = new double[] { sepdamage[1] - sepdamage[0], 0 }; //Converted from separate damage values to final damage values
-            Fight(damages);
+            Fight(sepdamage,"Heal");
         }
         private void FuncRetreat_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -159,12 +276,9 @@ namespace ArenaGameWPF
             }
             else
             {
-                GameAction_Textbox.Text += "\nHero retreat failed.";
                 damages = Functions.FuncFailedRetreat(hero, monster);
-                GameAction_Textbox.Text += $"\nMonster did {String.Format("{0:0.00}", damages[0])} damage to Hero.";
-                Fight(damages);
+                Fight(damages,"Retreat");
             }
-
         }
         protected override void OnClosing(CancelEventArgs e)
         {
