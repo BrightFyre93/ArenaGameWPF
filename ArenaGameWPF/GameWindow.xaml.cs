@@ -14,8 +14,8 @@ namespace ArenaGameWPF
         int type_monster;
         double[] damages; //Array to save the damage being done to hero and monster
         readonly Monsters monsterObject = new Monsters();
-        MonsterStats monster = new MonsterStats();
-        HeroStats hero = new HeroStats();
+        public MonsterStats monster = new MonsterStats();
+        public HeroStats hero = new HeroStats();
         readonly static Random random_number_generator = new Random();
         readonly MainWindow myMainWindow = (MainWindow)Application.Current.MainWindow;
         public GameWindow(HeroStats hero_stats)
@@ -88,7 +88,7 @@ namespace ArenaGameWPF
         }
         private void CheckForDrops()
         {
-            Inventory tempInventory = new Inventory(null);
+            Inventory tempInventory = new Inventory(null,null, null);
             foreach (object item in tempInventory.inventoryItems)
             {
                 if(item is InventoryConsumable)
@@ -286,7 +286,7 @@ namespace ArenaGameWPF
         }
         private void FuncInventory_Button_Click(object sender, RoutedEventArgs e)
         {
-            Inventory newInventoryWindow = new Inventory(myMainWindow.currentInventory);
+            Inventory newInventoryWindow = new Inventory(myMainWindow.currentInventory, hero, monster);
             newInventoryWindow.Show();
         }
     }

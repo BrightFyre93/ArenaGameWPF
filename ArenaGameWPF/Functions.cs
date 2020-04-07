@@ -8,18 +8,26 @@ namespace ArenaGameWPF
 {
     class Functions
     {
-        
         readonly static Random random_number_generator = new Random();
-        public static int FuncConfuse()
+        public static List<object> FuncUseInventoryConsumable(int selecteditem,HeroStats hero, MonsterStats monster,InventoryConsumable item, List<object> currentInventory)
         {
-            if (random_number_generator.NextDouble()>0.9) //10% chance to get confused for three turns
+            List<object> temp_list = new List<object>();
+            switch (item.ItemIndex)
             {
-                return 3;
+                case 11:
+                    monster.turnConfusedStatus = item.effectTurns;
+                    if(item.numberofuses == 1) //Remove item from current inventory if one use item
+                    {
+                        currentInventory.RemoveAt(selecteditem);
+                    }
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                return 0;
-            }    
+            temp_list[0] = hero;
+            temp_list[1] = monster;
+            temp_list[2] = currentInventory;
+            return temp_list;
         }
         public static double CalculateDamage(double attack, double defense)
         {

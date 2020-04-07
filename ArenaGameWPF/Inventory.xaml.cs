@@ -39,11 +39,12 @@ namespace ArenaGameWPF
     public partial class Inventory : Window
     {
         readonly public List<object> inventoryItems = new List<object>();
-        
+        public MonsterStats monster = new MonsterStats();
+        public HeroStats hero = new HeroStats();
         int itemSelected;
         List<object> inventoryInUse; //currentInventory object including Armor and Consumables
         readonly MainWindow myMainWindow = (MainWindow)Application.Current.MainWindow;
-        public Inventory(List<object> HeroInventory)
+        public Inventory(List<object> HeroInventory, HeroStats hero_stats, MonsterStats monster_stats)
         {
             InitializeComponent();
             inventoryInUse = HeroInventory;
@@ -51,6 +52,8 @@ namespace ArenaGameWPF
             itemSelected = 0;
             PopulateItems();
             InventoryCount();
+            hero = hero_stats;
+            monster = monster_stats;
         }
         private void PopulateItems()
         {
@@ -337,7 +340,18 @@ namespace ArenaGameWPF
         }
         private void UseItem_Button_Click(object sender, RoutedEventArgs e)
         {
+            List<object> HeroMonsterList;
+            if (inventoryInUse[itemSelected] is InventoryConsumable)
+             {
+                HeroMonsterList = Functions.FuncUseInventoryConsumable(itemSelected, hero, monster, (InventoryConsumable)inventoryInUse[itemSelected], inventoryInUse);//Sending values to UseInventoryItem in functions
+                hero = ((HeroStats)HeroMonsterList[0]);
+                monster = ((MonsterStats)HeroMonsterList[1]);
+                inventoryInUse = (List<object>)HeroMonsterList[2];
+            }
+            else if((inventoryInUse[itemSelected] is InventoryArmor))
+            {
 
+            }
         }
         private void Delete_Button_Click(object sender, RoutedEventArgs e)
         {
